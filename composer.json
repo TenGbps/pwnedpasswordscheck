@@ -1,0 +1,22 @@
+{
+    "name": "tengbps/pwnedpasswordscheck",
+    "type": "phpbb-extension",
+    "description": "Checks password against PwnedPasswords API on login and password change",
+    "version": "1.0.0",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "tengbps",
+            "homepage": "https://github.com/TenGbps/pwnedpasswordscheck"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "extra": {
+                "display-name": "Pwned Passwords Check",
+                "soft-require": {
+                        "phpbb/phpbb": ">=3.2"
+                }
+        }
+}
