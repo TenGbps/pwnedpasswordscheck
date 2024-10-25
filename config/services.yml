@@ -1,0 +1,10 @@
+services:
+    tengbps.pwnedpasswordscheck.listener:
+        class: tengbps\pwnedpasswordscheck\event\listener
+        arguments:
+            - '@user'
+            - '@request'
+            - '@config_text'
+            - '@dbal.conn'
+        tags:
+            - { name: event.listener }
