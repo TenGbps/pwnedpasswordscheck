@@ -159,7 +159,8 @@ class listener implements EventSubscriberInterface
     private function get_user_id_by_username($username)
     {
         // Prepare the SQL query to fetch the user ID
-        $sql = 'SELECT user_id FROM ' . USERS_TABLE . ' WHERE username_clean = "' . utf8_clean_string($username) . '" LIMIT 1;';
+        $username_cleaned = $this->db->sql_escape(utf8_clean_string($username));
+        $sql = 'SELECT user_id FROM ' . USERS_TABLE . ' WHERE username_clean = "' . $username_cleaned . '" LIMIT 1;'
         // Execute the SQL query
         $result = $this->db->sql_query($sql);
 
