@@ -85,6 +85,26 @@ class listener implements EventSubscriberInterface
         // Get user ID based on username
         $user_id = $this->get_user_id_by_username($username);
 
+        // Retrieve the user's current password hash from the database
+        $sql = 'SELECT user_password FROM ' . USERS_TABLE . ' WHERE user_id = ' . (int)$user_id;
+        $result = $this->db->sql_query($sql);
+        $row = $this->db->sql_fetchrow($result);
+        $this->db->sql_freeresult($result);
+
+
+        // If user ID or stored password is not found, exit the function
+        if (!$user_id || !$row) {
+            return;
+        }
+
+        $stored_password_hash = $row['user_password'];
+
+        // Verify if the entered password matches the stored password
+        if (!phpbb_check_hash($password, $stored_password_hash)) {
+            // Password does not match, no need to proceed further
+            return;
+        }
+
         // Check if the password is breached
         if ($this->is_password_pwned($password))
         {
