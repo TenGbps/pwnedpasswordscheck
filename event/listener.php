@@ -160,7 +160,7 @@ class listener implements EventSubscriberInterface
     {
         // Prepare the SQL query to fetch the user ID
         $username_cleaned = $this->db->sql_escape(utf8_clean_string($username));
-        $sql = 'SELECT user_id FROM ' . USERS_TABLE . ' WHERE username_clean = "' . $username_cleaned . '" LIMIT 1;'
+        $sql = 'SELECT user_id FROM ' . USERS_TABLE . ' WHERE username_clean = "' . $username_cleaned . '" LIMIT 1;';
         // Execute the SQL query
         $result = $this->db->sql_query($sql);
 
